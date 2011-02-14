@@ -1,0 +1,78 @@
+Simple File Store
+=================
+Alexandru Ungur <alexaandru@gmail.com>
+:icons:
+:toc:
+:website: http://github.com/alexaandru/simple_file_store
+
+Description
+-----------
+
+A micro-framework for storing and loading files to/from the filesystem.
+
+Features/Problems
+-----------------
+
+* Simplicity! which makes it trivial to extend (see SecureFileStore or ScalableFileStore)
+* Handles the details of file_name composition/decomposition in a DSLish way
+* Handles file content storing/loading to/from file
+* TODO: implement validations (file name components should not be blank, etc.)
+
+Synopsis
+--------
+
+.Example Usage
+--------------------------------------------------------------------
+class MyUpload < SimpleFileStore
+  file_name_tokens :user_id, :category_id, :timestamp
+end
+
+params = {:content => "IO or string", :user_id => 1, :category_id => 17}
+m = MyUpload.new(params) # file content is saved to fstore/my_upload/1-17-12343456.txt
+m.file_name # => "1-17-12343456.txt"
+
+to load, simply call:
+m = MyUpload.new(:file_name => "1-17-12343456.txt")
+m.file # => "file content"
+--------------------------------------------------------------------
+
+Requirements
+------------
+
+* ActiveSupport (for Inflections);
+* Encryption Store needs an encryption library;
+
+Install
+-------
+
+----------------------------------
+sudo gem install simple_file_store
+----------------------------------
+
+License
+-------
+
+(The MIT License)
+
+Copyright (c) 2011 Alexandru Ungur
+
+Permission is hereby granted, free of charge, to any person obtaining
+a copy of this software and associated documentation files (the
+'Software'), to deal in the Software without restriction, including
+without limitation the rights to use, copy, modify, merge, publish,
+distribute, sublicense, and/or sell copies of the Software, and to
+permit persons to whom the Software is furnished to do so, subject to
+the following conditions:
+
+The above copyright notice and this permission notice shall be
+included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED 'AS IS', WITHOUT WARRANTY OF ANY KIND,
+EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY
+CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
+TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
+SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+// vim: set syntax=asciidoc:
