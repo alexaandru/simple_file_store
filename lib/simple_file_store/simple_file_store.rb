@@ -23,7 +23,7 @@
 #
 
 #
-# TODO: implement further validations (file name components should 
+# TODO: implement further validations (file name components should
 # not be blank, etc.)
 #
 require 'pathname'
@@ -39,9 +39,10 @@ class SimpleFileStore
   attr :file_name
 
   def self.file_name_tokens(*args)
+    @file_name_tokens ||= []
     unless args.empty?
-      @file_name_tokens = args
-      @file_name_tokens.each do |token| 
+      @file_name_tokens.concat(args)
+      args.each do |token|
         next if [:timestamp, :usec].include?(token.to_sym)
         instance_eval { attr_accessor token }
       end
@@ -50,9 +51,7 @@ class SimpleFileStore
   end
 
   def initialize(args = {})
-    init_root!
-    validate!
-    load_arguments(args)
+    init_root!; validate!; load_arguments(args)
     load_or_store!
   end
 
@@ -61,6 +60,8 @@ class SimpleFileStore
   end
 
   def file_name=(new_name)
+    return false if new_name.nil? || new_name.empty?
+
     if new_name =~ /^(.*)\.(.*?)$/
       @file_name, self.content_type = new_name, $2
       file_name_tokens.zip($1.split(Separator)) {|(k, v)| send("#{k}=", v)}
@@ -70,6 +71,8 @@ class SimpleFileStore
   end
 
   def content=(new_content)
+    return false if new_content.nil? || new_content.empty?
+
     @content = if new_content.respond_to?(:read) then    new_content.read
                elsif new_content.respond_to?(:to_s) then new_content.to_s
                else                                      new_content
