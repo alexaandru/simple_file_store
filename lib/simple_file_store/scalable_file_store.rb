@@ -6,23 +6,11 @@
 # filesystem allows) without every having to worry about
 # too many files under one folder.
 #
-class ScalableFileStore < SimpleFileStore
-
-  attr_accessor :inter_tree
-
-  def file_name
-    super; scale_path!
-    @file_name
-  end
-
-  def file_name=(new_name)
-    super; scale_path!
-    @file_name
-  end
+module ScalableFileStore
 
   def path
     scale_path!
-    root.join(self.class.name.tableize, inter_tree, file_name)
+    root.join(self.class.name.tableize, @inter_tree, file_name)
   end
 
   private

@@ -5,17 +5,17 @@
 # TODO: Implement an easy way to select the encryptor/decryptor.
 #
 
-class SecureFileStore < ScalableFileStore
+module SecureFileStore
 
   private
 
   def pull(f)
     raw = f.read
-    self.file = App.decrypt(raw) || raw
+    self.content = App.decrypt(raw) || raw
   end
 
   def push(f)
-    f.write(App.encrypt(file))
+    f.write(App.encrypt(content))
   end
 
 end

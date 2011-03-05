@@ -1,7 +1,11 @@
 require 'test/test_helper'
 
-class TestScalableStore < ScalableFileStore
+class TestScalableStore < SimpleFileStore
+
+  include ScalableFileStore
+
   file_name_tokens :res_id, :alt_res_id
+
 end
 
 class TestScalableFileStore < Test::Unit::TestCase
