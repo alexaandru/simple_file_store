@@ -12,6 +12,14 @@ class TestCachingStore < SimpleFileStore
 
 end
 
+class TestBadCachingStore < SimpleFileStore
+
+  include CachingFileStore
+
+  file_name_tokens :res_id, :alt_res_id
+
+end
+
 class TestCachingFileStore < Test::Unit::TestCase
   context "Auto-saving to CachingFileStore" do
     setup do
@@ -35,6 +43,12 @@ class TestCachingFileStore < Test::Unit::TestCase
 
     should "set attributes" do
       assert_attributes_set(@ts, @file_content, @res_id, @alt_res_id, @expected_file_name)
+    end
+
+    should "raise an error if generate_content is not defined" do
+      assert_raise NoMethodError do
+        TestBadCachingStore.new(:res_id => @res_id, :alt_res_id => @alt_res_id)
+      end
     end
   end
 

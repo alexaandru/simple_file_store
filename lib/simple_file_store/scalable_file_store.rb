@@ -10,13 +10,13 @@
 module ScalableFileStore
 
   def path
-    scale_path!
+    scale_path
     root.join(self.class.name.tableize, @inter_tree, file_name)
   end
 
   private
 
-  def scale_path!
+  def scale_path
     raise ArgumentError, "Cowardly refusing to scale empty filename" if file_name.nil?
 
     @inter_tree ||= begin
