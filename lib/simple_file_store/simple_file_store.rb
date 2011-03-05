@@ -24,7 +24,8 @@
 
 #
 # TODO: implement further validations (file name components should
-# not be blank, etc.)
+# not be blank, etc.);
+# TODO: make FileStoreRoot and Separator configurable.
 #
 require 'pathname'
 require 'rubygems'
@@ -35,7 +36,6 @@ class SimpleFileStore < BlankSlate
 
   reveal :class unless RUBY_VERSION >= '1.9'
 
-  # TODO: make these configurable
   FileStoreRoot = "fstore".freeze
   Separator     = "-".freeze
 

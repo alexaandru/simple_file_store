@@ -16,10 +16,10 @@ module ScalableFileStore
   private
 
   def scale_path!
-    raise ArgumentError, "Cowardly refusing to scale empty filename" if @file_name.nil?
+    raise ArgumentError, "Cowardly refusing to scale empty filename" if file_name.nil?
 
     @inter_tree ||= begin
-      h = @file_name.hash.abs.to_s
+      h = file_name.hash.abs.to_s
       File.join(*[h[0,2],h[2,2],h[4,2],h[6,2]].reject{|z| z.nil? || z.empty?})
     end
   end
