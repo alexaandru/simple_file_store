@@ -6,6 +6,7 @@
 # filesystem allows) without every having to worry about
 # too many files under one folder.
 #
+
 module ScalableFileStore
 
   def path

@@ -10,19 +10,18 @@
 #
 # TODO: Implement an easy way to select the caching method
 # vs. use the current convention.
+# TODO: imlpement some hooks in base class, so that redefining
+# methods should not be necessary.
 #
 
 module CachingFileStore
 
-  def initialize(args = {})
-    init_root!
-    validate!
-    args[:content] = generate_content if args[:content].nil? && args[:file_name].nil?
-    load_arguments(args)
-    load_or_store!
-  end
-
   protected
+
+  def load_or_store!
+    self.content = generate_content unless File.exist?(path)
+    open {|f| content.nil? ? pull(f) : push(f)}
+  end
 
   def generate_content
     raise NoMethodError, "You must implement the method yourself"
