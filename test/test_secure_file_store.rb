@@ -1,4 +1,4 @@
-require 'test/test_helper'
+require 'test/helper'
 
 # This is pretending to encrypt something.
 module App
@@ -21,7 +21,7 @@ class TestSecureStore < SimpleFileStore
 end
 
 class TestSecureFileStore < Test::Unit::TestCase
-  context "Auto-saving to file" do
+  context "Auto-saving to SecureFileStore" do
     setup do
       @res_id       = "102"
       @alt_res_id   = "foobar"
@@ -46,7 +46,7 @@ class TestSecureFileStore < Test::Unit::TestCase
     end
   end
 
-  context "Auto-loading from file" do
+  context "Auto-loading from SecureFileStore" do
     setup do
       @res_id       = "1"
       @alt_res_id   = "2"

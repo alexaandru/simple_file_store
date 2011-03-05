@@ -1,11 +1,11 @@
-require 'test/test_helper'
+require 'test/helper'
 
 class TestStore < SimpleFileStore
   file_name_tokens :record_id, :timestamp, :usec
 end
 
 class TestSimpleFileStore < Test::Unit::TestCase
-  context "Auto-saving to file" do
+  context "Auto-saving to SimpleFileStore" do
     setup do
       @record_id    = "100"
       @file_content = "abc"
@@ -30,7 +30,7 @@ class TestSimpleFileStore < Test::Unit::TestCase
     end
   end
 
-  context "Auto-loading from file" do
+  context "Auto-loading from SimpleFileStore" do
     setup do
       @record_id    = "101"
       @file_content = "cde"

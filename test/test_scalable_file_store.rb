@@ -1,4 +1,4 @@
-require 'test/test_helper'
+require 'test/helper'
 
 class TestScalableStore < SimpleFileStore
 
@@ -9,7 +9,7 @@ class TestScalableStore < SimpleFileStore
 end
 
 class TestScalableFileStore < Test::Unit::TestCase
-  context "Auto-saving to file" do
+  context "Auto-saving to ScalableFileStore" do
     setup do
       @res_id       = "101"
       @alt_res_id   = "2345678"
@@ -39,7 +39,7 @@ class TestScalableFileStore < Test::Unit::TestCase
     end
   end
 
-  context "Auto-loading from file" do
+  context "Auto-loading from ScalableFileStore" do
     setup do
       @res_id       = "1"
       @alt_res_id   = "2"
