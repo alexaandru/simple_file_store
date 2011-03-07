@@ -1,4 +1,8 @@
-== 1.0.0 / 2011-02-10
+== 0.0.2 / 2011-03-07
+* Added CachingFileStore, cleaned up and simplified all existing Stores; 
+* Added automated/unit testing for everything.
+
+== 0.0.1 / 2011-02-10
 
 * 1 major enhancement
   * Birthday!
