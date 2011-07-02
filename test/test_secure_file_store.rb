@@ -14,7 +14,7 @@ end
 
 class TestSecureStore < SimpleFileStore
 
-  include SecureFileStore
+  features :secure
 
   file_name_tokens :res_id, :alt_res_id
 

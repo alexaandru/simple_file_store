@@ -2,7 +2,7 @@ require 'test/helper'
 
 class TestCachingStore < SimpleFileStore
 
-  include CachingFileStore
+  features :caching
 
   file_name_tokens :res_id, :alt_res_id
 

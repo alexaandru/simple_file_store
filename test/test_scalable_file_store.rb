@@ -2,7 +2,7 @@ require 'test/helper'
 
 class TestScalableStore < SimpleFileStore
 
-  include ScalableFileStore
+  features :scalable
 
   file_name_tokens :res_id, :alt_res_id
 

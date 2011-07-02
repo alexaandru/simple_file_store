@@ -30,12 +30,13 @@
 require 'pathname'
 require 'rubygems'
 require 'active_support/inflector'
-require 'blankslate'
 
-class SimpleFileStore < BlankSlate
+class SimpleFileStore < MiniBlankSlate
 
-  reveal :class unless RUBY_VERSION >= '1.9'
-
+  KnownFeatures = Dir.glob(File.join(File.dirname(__FILE__), '*_file_store.rb')).map do |f|
+    f =~ %r|.*/([a-z]+)_file_store.rb$|
+    $1 && $1 != 'simple' ? $1 : nil
+  end.compact.freeze
   FileStoreRoot = "fstore".freeze
   Separator     = "-".freeze
 
@@ -43,16 +44,27 @@ class SimpleFileStore < BlankSlate
   attr :content
   attr :file_name
 
-  def self.file_name_tokens(*args)
-    @file_name_tokens ||= []
-    unless args.empty?
-      @file_name_tokens.concat(args)
-      args.each do |token|
-        next if [:timestamp, :usec].include?(token.to_sym)
-        instance_eval { attr_accessor token }
+  class << self
+    def file_name_tokens(*args)
+      @file_name_tokens ||= []
+      unless args.empty?
+        @file_name_tokens.concat(args)
+        args.each do |token|
+          next if [:timestamp, :usec].include?(token.to_sym)
+          instance_eval { attr_accessor token }
+        end
+      end
+      @file_name_tokens
+    end
+
+    def features(*args)
+      args = args.flatten.compact
+      raise ArgumentError, "Unknown feature" unless args.all?{|a| KnownFeatures.include?(a.to_s)}
+
+      args.each do |a|
+        instance_eval { include "#{a}_file_store".classify.constantize }
       end
     end
-    @file_name_tokens
   end
 
   def initialize(args = {})
