@@ -1,3 +1,7 @@
+== 0.0.3 / 2011-07-02
+* Dropped using the BlankSlate gem in favor of a minimal, local lib;
+* Introduced a features() class methods for easily adding store features;
+
 == 0.0.2 / 2011-03-07
 * Added CachingFileStore, cleaned up and simplified all existing Stores; 
 * Added automated/unit testing for everything.
