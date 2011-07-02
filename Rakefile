@@ -61,3 +61,19 @@ namespace :shoulda do
     end
   end
 end
+
+namespace :test do
+  desc "Build test coverage report (rcov)"
+  task :coverage do
+    sh "rcov test/test_*_file_store.rb -Itest -Ilib"
+  end
+
+  desc "Check code quality"
+  task :quality do
+    %w|roodi flog flay|.each do |e|
+      puts "=== #{e.capitalize} #{'=' * 80}"
+      sh "#{e} lib/**/*.rb"
+      puts
+    end
+  end
+end
