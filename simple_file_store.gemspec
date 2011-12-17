@@ -21,7 +21,12 @@ Gem::Specification.new do |s|
   s.rdoc_options  = ['--main', 'README.asciidoc']
 
   # specify any dependencies here; for example:
+  s.add_runtime_dependency 'activesupport', ['~>2.3.0']
+  s.add_development_dependency 'rake'
   s.add_development_dependency 'bundler'
   s.add_development_dependency 'shoulda'
-  s.add_runtime_dependency 'activesupport', ['~>2.3.0']
+  s.add_development_dependency 'simplecov'
+  s.add_development_dependency 'roodi'
+  s.add_development_dependency 'flay'
+  s.add_development_dependency 'flog'
 end
