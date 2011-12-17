@@ -7,3 +7,4 @@ pkg
 README.html
 README.pdf
 *.lock
+*.sw?
