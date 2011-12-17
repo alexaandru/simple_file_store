@@ -13,7 +13,7 @@ Bones {
   url          'http://rubygems.org/gems/simple_file_store'
   readme_file  'README.asciidoc'
   ignore_file  '.gitignore'
-  depend_on    'activesupport'
+  depend_on    'activesupport', :version => '~>2.3.0'
   depend_on    'bones',      :development => true
   depend_on    'bones-rcov', :development => true
 }
@@ -65,7 +65,7 @@ end
 namespace :test do
   desc "Build test coverage report (rcov)"
   task :coverage do
-    sh "rcov test/test_*_file_store.rb -Itest -Ilib"
+    sh "rcov --text-report test/test_*_file_store.rb -Itest -Ilib"
   end
 
   desc "Check code quality"
