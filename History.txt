@@ -1,6 +1,17 @@
+== 0.0.4 / 2011-12-17
+* Completely rehauled the gem infrastructure:
+  * Dropped Bones in favor of Bundler for gem management;
+  * Added Bundler for managing development/test dependencies;
+  * Completely rewritten the rake tasks, to make them simpler and more useful;
+* Ensured the library is 1.9.2 compatible;
+* Changed the base class from SimpleFileStore to SimpleFileStore::Base, which
+  allows us to use the module as a global namespace for project related code;
+* Simplified tests;
+* Various other cleanup.
+
 == 0.0.3 / 2011-07-02
 * Dropped using the BlankSlate gem in favor of a minimal, local lib;
-* Introduced a features() class methods for easily adding store features;
+* Introduced a features() class methods for easily adding store features.
 
 == 0.0.2 / 2011-03-07
 * Added CachingFileStore, cleaned up and simplified all existing Stores; 
@@ -8,5 +19,5 @@
 
 == 0.0.1 / 2011-02-10
 
-* 1 major enhancement
+* 1 major enhancement:
   * Birthday!
