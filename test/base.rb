@@ -3,12 +3,14 @@ require 'fileutils'
 
 require 'rubygems'
 require 'shoulda'
-require 'simplecov'
-SimpleCov.start do
-  add_filter "/test/"
-  add_group "Libraries",   "/lib/"
-  command_name "Combined Tests"
-end if ENV['COVERAGE']
+if RUBY_VERSION >= '1.9.0'
+  require 'simplecov'
+  SimpleCov.start do
+    add_filter "/test/"
+    add_group "Libraries",   "/lib/"
+    command_name "Combined Tests"
+  end if ENV['COVERAGE']
+end
 
 require './lib/simple_file_store'
 # The testing fstore root
