@@ -28,6 +28,7 @@
 # TODO: make FileStoreRoot and Separator configurable.
 #
 require 'pathname'
+require 'fileutils'
 require 'rubygems'
 require 'active_support/inflector'
 
@@ -126,7 +127,7 @@ module SimpleFileStore
       self.root ||= case
                     when defined?(Rails) then   Rails.root
                     when defined?(AppRoot) then AppRoot.is_a?(Pathname) ? AppRoot : Pathname.new(AppRoot.to_s)
-                    else                        Pathname.new(File.dirname(File.dirname(File.dirname(__FILE__))))
+                    else                        Pathname.new(FileUtils.pwd)
                     end.join(FileStoreRoot)
     end
 
