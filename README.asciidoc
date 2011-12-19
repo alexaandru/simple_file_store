@@ -23,17 +23,21 @@ Synopsis
 
 .Example Usage
 --------------------------------------------------------------------
-class MyUpload < SimpleFileStore
+class MyUpload < SimpleFileStore::Base
+
+  features :scalable, :encrypted
+
   file_name_tokens :user_id, :category_id, :timestamp
+
 end
 
 params = {:content => "IO or string", :user_id => 1, :category_id => 17}
-m = MyUpload.new(params) # file content is saved to fstore/my_upload/1-17-12343456.txt
-m.file_name # => "1-17-12343456.txt"
+m = MyUpload.new(params) # file content is saved to fstore/my_uploads/29/b7/f2/25/1-17-1324284042.txt
+m.file_name # => "1-17-1324284042.txt"
 
 to load, simply call:
-m = MyUpload.new(:file_name => "1-17-12343456.txt")
-m.file # => "file content"
+m = MyUpload.new(:file_name => "1-17-1324284042.txt")
+m.content # => "file content"
 --------------------------------------------------------------------
 
 Requirements
@@ -46,7 +50,11 @@ Install
 -------
 
 ----------------------------------
-sudo gem install simple_file_store
+gem install simple_file_store
+
+or add this to Gemfile:
+
+gem 'simple_file_store'
 ----------------------------------
 
 License
