@@ -1,6 +1,6 @@
 # -*- encoding: utf-8 -*-
 $:.push File.expand_path('../lib', __FILE__)
-require 'simple_file_store'
+require 'simple_file_store/version'
 
 Gem::Specification.new do |s|
   s.name        = 'simple_file_store'
