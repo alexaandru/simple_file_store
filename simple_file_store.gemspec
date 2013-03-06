@@ -1,6 +1,4 @@
-# -*- encoding: utf-8 -*-
-$:.push File.expand_path('../lib', __FILE__)
-require 'simple_file_store/version'
+require './lib/simple_file_store/version'
 
 Gem::Specification.new do |s|
   s.name        = 'simple_file_store'
@@ -21,7 +19,7 @@ Gem::Specification.new do |s|
   s.rdoc_options  = ['--main', 'README.asciidoc']
 
   # specify any dependencies here; for example:
-  s.add_runtime_dependency 'activesupport', ['~>2.3.0']
+  s.add_runtime_dependency 'activesupport', ['>=2.3']
   s.add_development_dependency 'rake'
   s.add_development_dependency 'bundler'
   s.add_development_dependency 'shoulda'
